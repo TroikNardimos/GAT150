@@ -1,8 +1,8 @@
 #include "Actor.h"
-#include "Model.h"
-#include "Particle.h"
-#include "Random.h"
-#include "../../Engine/Source/Engine.h"
+#include "../Renderer/Model.h"
+#include "../Renderer/Particle.h"
+#include "../Math/Random.h"
+#include "../Engine.h"
 #include <iostream>
 
 void Actor::Update(float dt)
