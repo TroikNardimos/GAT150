@@ -1,17 +1,37 @@
 #pragma once
-#include "Renderer.h"
-#include "Particle.h"
-#include "Random.h"
-#include "ETime.h"
-#include "MathUtils.h"
-#include "Vector2.h"
-#include "Input.h"
-#include "Model.h"
-#include "Transform.h"
-#include "Audio.h"
+
+// **core**
+#include "Core/ETime.h"
+#include "Core/EAssert.h"
+#include "Core/EFile.h"
+
+// **systems**
+//renderer
+#include "Renderer/Renderer.h"
+#include "Renderer/Particle.h"
+#include "Renderer/Text.h"
+#include "Renderer/Font.h"
+#include "Renderer/Model.h"
+// input
+#include "Input/Input.h"
+//audio
+#include "Audio/Audio.h"
+
+// **math**
+#include "Math/Vector2.h"
+#include "Math/Random.h"
+#include "Math/MathUtils.h"
+#include "Math/Transform.h"
+
+// **framework**
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+
 
 #include <fmod.hpp>
 #include <SDL.h>
+#include <memory>
+#include <cassert>
 
 #define RENDERER g_engine.GetRenderer()
 #define INPUT g_engine.GetInput()
@@ -36,11 +56,8 @@ public:
 	bool IsQuit();
 
 public:
-	Renderer* m_renderer{ nullptr };
-	Input* m_input{ nullptr };
-	Audio* m_audio{ nullptr };
-
-	static Engine ms_engine;
+	bool quit{ false };
+	std::unique_ptr<Renderer> m_renderer{ nullptr };
+	std::unique_ptr<Input> m_input{ nullptr };
+	std::unique_ptr<Audio> m_audio{ nullptr };
 };
-
-extern Engine g_engine;
