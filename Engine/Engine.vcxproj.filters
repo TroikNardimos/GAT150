@@ -31,6 +31,9 @@
     <Filter Include="Source\Math">
       <UniqueIdentifier>{40ec557b-6eb2-4f22-b6c9-0437c37de99e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Resources">
+      <UniqueIdentifier>{1f888d9e-9956-4f72-ad46-1371ede3b66d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\EFile.cpp">
@@ -71,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="Source\Audio\Audio.cpp">
       <Filter>Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\Texture.cpp">
+      <Filter>Source\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +133,18 @@
     </ClInclude>
     <ClInclude Include="Source\Audio\Audio.h">
       <Filter>Source\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Texture.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\Resource.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\ResourceManager.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Singleton.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

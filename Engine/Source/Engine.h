@@ -27,6 +27,9 @@
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
 
+// **resources**
+#include "Resources/Resource.h"
+#include "Resources/ResourceManager.h"
 
 #include <fmod.hpp>
 #include <SDL.h>

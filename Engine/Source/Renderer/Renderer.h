@@ -2,10 +2,13 @@
 #include <SDL.h>
 #include <string>
 #include <SDL_ttf.h>
+#include <SDL_image.h>
+#include "Texture.h"
 
 class Renderer
 {
 	friend class Text;
+	friend class Texture;
 public:
 	Renderer() = default;
 
@@ -23,6 +26,7 @@ public:
 	void DrawPoint(float x, float y);
 	void DrawRect(int x, int y, int w, int h);
 	void DrawRect(float x, float y, float w, float h);
+	void DrawTexture(Texture* texture, float x, float y, float angle = 0.0f);
 
 	int GetWidth() const { return m_width; }
 	int GetHeight() const { return m_height; }
