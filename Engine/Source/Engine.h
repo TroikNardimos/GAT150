@@ -31,6 +31,9 @@
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
 
+// **components**
+#include "Components/TextureComponent.h"
+
 #include <fmod.hpp>
 #include <SDL.h>
 #include <memory>
@@ -56,10 +59,13 @@ public:
 	Audio& GetAudio() { return *m_audio; }
 
 	void GetPS();
-	bool IsQuit();
+	bool IsQuit() { return quit; }
+
+	Time& GetTime() { return *m_time; }
 
 public:
 	bool quit{ false };
+	std::unique_ptr<Time> m_time;
 	std::unique_ptr<Renderer> m_renderer{ nullptr };
 	std::unique_ptr<Input> m_input{ nullptr };
 	std::unique_ptr<Audio> m_audio{ nullptr };

@@ -12,24 +12,39 @@ int main(int argc, char* argv[])
 	engine->Initialize();
 
 	//ResourceManager rm = ResourceManager();
+	Time time;
 
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
+	{
+		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Skyrim_logo.png", engine->GetRenderer());
+		res_t<Font> font = ResourceManager::Instance().Get<Font>("Arcadeclassic.ttf", 50);
+		std::unique_ptr<Text> text = std::make_unique<Text>(font);
+		text->Create(engine->GetRenderer(), "Howdy", { 0,0,1,1 });
 
-	res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Skyrim_logo.png", engine->GetRenderer());
-	//res_t<Texture> texture2 = ResourceManager::Instance().Get<Texture>("Skyrim_logo.png", engine->GetRenderer());
+		Transform t{ {30, 30} };
+		std::unique_ptr<Actor> actor = std::make_unique<Actor>(t);
+		std::unique_ptr<TextureComponent> component = std::make_unique<TextureComponent>();
+		component->texture = texture;
+		actor->AddComponent(std::move(component));
 
-	while (!engine->IsQuit()) {
-		engine->Update();
+		while (!engine->IsQuit()) {
+			engine->Update();
 
-		engine->GetRenderer().SetColour(255, 255, 255, 0);
-		engine->GetRenderer().BeginFrame();
+			actor->Update(engine->GetTime().GetDeltaTime());
 
-		//Draw here
-		engine->GetRenderer().DrawTexture(texture.get(), 30, 30);
+			engine->GetRenderer().SetColour(255, 255, 255, 0);
+			engine->GetRenderer().BeginFrame();
 
-		engine->GetRenderer().EndFrame();
+			//Draw here
+			text->Draw(engine->GetRenderer(), 400, 500);
+			//engine->GetRenderer().DrawTexture(texture.get(), 30, 30, 0);
+			actor->Draw(engine->GetRenderer());
+
+			engine->GetRenderer().EndFrame();
+		}
 	}
+	ResourceManager::Instance().Clear();
 	engine->Shutdown(); 
 
 	return 0;
