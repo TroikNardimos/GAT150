@@ -1,0 +1,8 @@
+{
+  "name": "Caleb",
+  "age": 21,
+  "speed": 0.5,
+  "isAwake": false,
+  "position": [10, 20],
+  "colour": [0, 0, 1, 1]
+}
