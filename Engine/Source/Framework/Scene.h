@@ -1,37 +1,46 @@
 #pragma once
+#include "Object.h"
 
 #include <memory>
 #include <list>
 
 class Renderer;
 class Actor;
+class Game;
+class Engine;
 
-class Scene
+class Scene: public Object
 {
 public:
-	Scene() = default;
+	Scene(Engine* engine, Game* game = nullptr) : 
+		engine{ engine },
+		game{ game } 
+	{}
 
+	CLASS_DECLARATION(Scene);
+
+	void Initialize() override;
 	void Update(float dt);
 	void Draw(Renderer& renderer);
 
 	void AddActor(std::unique_ptr<Actor> actor);
-
 	void RemoveAll();
 
 	template<typename T>
 	T* GetActor();
+
+public:
+	Engine* engine{ nullptr };
+	Game* game{ nullptr };
 	
 protected:
-	std::list<std::unique_ptr<Actor>> m_actors;
-
-private:
-
+	std::list<std::unique_ptr<Actor>> actors;
 };
 
 template<typename T>
 T* Scene::GetActor()
 {
-	for (auto& actor : m_actors)
+	for (auto& actor : actors)
 	{
 		T* result = dynamic_cast<T*>(actor.get());
 		if (result) return result;
