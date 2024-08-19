@@ -7,8 +7,6 @@
 
 class Renderer
 {
-	friend class Text;
-	friend class Texture;
 public:
 	Renderer() = default;
 
@@ -26,10 +24,15 @@ public:
 	void DrawPoint(float x, float y);
 	void DrawRect(int x, int y, int w, int h);
 	void DrawRect(float x, float y, float w, float h);
-	void DrawTexture(Texture* texture, float x, float y, float angle = 0.0f);
 
 	int GetWidth() const { return m_width; }
 	int GetHeight() const { return m_height; }
+
+	void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
+
+	friend class Text;
+	friend class Texture;
 
 protected:
 	SDL_Window* m_window{ nullptr };

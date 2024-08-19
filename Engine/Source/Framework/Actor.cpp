@@ -32,13 +32,6 @@ void Actor::Update(float dt)
 	{
 		component->Update(dt);
 	}
-
-	// acceleration = F + F + F
-	// velocity += acc * dt
-	// speed += velocity * dt
-
-	//transform.position += (m_velocity * dt);
-	//m_velocity *= 1.0f / (1.0f + m_damping * dt);
 }
 
 void Actor::Draw(Renderer& renderer)
@@ -79,6 +72,11 @@ void Actor::Read(const json_t& value)
 			READ_DATA(componentValue, type);
 
 			auto component = Factory::Instance().Create<Component>(type);
+			if (!component)
+			{
+				std::cerr << "Could not create component: " << type << std::endl;
+				continue;
+			}
 			component->Read(componentValue);
 
 			AddComponent(std::move(component));

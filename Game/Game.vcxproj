@@ -159,12 +159,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\PlayerComponent.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{f580b2b6-113a-4dc7-8b41-54c84dac3a9b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Build\Assets\Scenes\scene.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Components\PlayerComponent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Engine\cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

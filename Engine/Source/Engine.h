@@ -16,8 +16,10 @@
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
 #include "Renderer/Model.h"
+
 // input
 #include "Input/Input.h"
+
 //audio
 #include "Audio/Audio.h"
 
@@ -30,6 +32,7 @@
 // **framework**
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
+#include "Framework/Game.h"
 
 // **resources**
 #include "Resources/Resource.h"
@@ -37,6 +40,8 @@
 
 // **components**
 #include "Components/TextureComponent.h"
+#include "Components/EnginePhysicsComponent.h"
+#include "Components/TextComponent.h"
 
 #include <fmod.hpp>
 #include <SDL.h>

@@ -1,16 +1,12 @@
 #include "Text.h"
+#include "Texture.h"
 #include <iostream>
-
-Text::~Text()
-{
-    if (m_texture != nullptr)
-    {
-        SDL_DestroyTexture(m_texture);
-    }
-}
+#include <cassert>
 
 bool Text::Create(Renderer& renderer, const std::string& text, const Colour& colour)
 {
+    assert(m_font);
+
     // creates a surface using the font, text, and colour
     SDL_Color c{ Colour::ToInt(colour.r), Colour::ToInt(colour.g), Colour::ToInt(colour.b), Colour::ToInt(colour.a) };
     SDL_Surface* surface = TTF_RenderText_Solid(m_font->m_ttfFont, text.c_str(), c);
@@ -22,8 +18,8 @@ bool Text::Create(Renderer& renderer, const std::string& text, const Colour& col
     }
 
     // creates a texture from the surface, only textures can render to the renderer
-    m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
-    if (surface == nullptr)
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+    if (texture == nullptr)
     {
         SDL_FreeSurface(surface);
         std::cerr << "Could not create surface.\n";
@@ -32,16 +28,16 @@ bool Text::Create(Renderer& renderer, const std::string& text, const Colour& col
 
     //free suface, as its no longer needed after creating texture
     SDL_FreeSurface(surface);
+
+    // create texture object
+    m_texture = std::make_shared<Texture>(texture);
+
     return true;
 }
 
-void Text::Draw(Renderer& renderer, int x, int y)
+void Text::Draw(Renderer& renderer, float x, float y, float angle)
 {
-    //query the texture for width and height
-    int width, height;
-    SDL_QueryTexture(m_texture, nullptr, nullptr, &width, &height);
-
-    //copies the texture onto renderer
-    SDL_Rect rect{ x, y, width, height };
-    SDL_RenderCopy(renderer.m_renderer, m_texture, NULL, &rect);
+    assert(m_texture);
+    
+    renderer.DrawTexture(m_texture, x, y, angle);
 }

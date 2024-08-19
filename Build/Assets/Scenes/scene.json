@@ -4,27 +4,53 @@
       "name": "player",
       "transform": {
         "position": [ 60, 60 ],
-        "rotation": 0.0,
-        "scale": 1
+        "rotation": 0,
+        "scale": 0.5
       },
       "components": [
         {
           "type": "TextureComponent",
-          "textureName":  "Textures/Skyrim_logo.png"
+          "textureName": "Textures/Skyrim_logo.png"
+        },
+        {
+          "type": "EnginePhysicsComponent",
+          "velocity": [ 0, 0 ],
+          "damping": 0.01
+        },
+        {
+          "type": "PlayerComponent",
+          "speed": 100
         }
       ]
     },
     {
       "name": "enemy",
       "transform": {
-        "position": [ 260, 360 ],
-        "rotation": 90.0,
-        "scale": 1
+        "position": [ 160, 260 ],
+        "rotation": 90,
+        "scale": 0.2
       },
       "components": [
         {
           "type": "TextureComponent",
           "textureName": "Textures/Skyrim_logo.png"
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "transform": {
+        "position": [ 360, 360 ],
+        "rotation": 0,
+        "scale": 10
+      },
+      "components": [
+        {
+          "type": "TextComponent",
+          "text": "Hello World",
+          "fontName": "fonts/arcadeclassic.ttf",
+          "fontsize": 24,
+          "colour": [ 0, 1, 0, 1 ]
         }
       ]
     }
