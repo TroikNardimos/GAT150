@@ -37,6 +37,9 @@
     <Filter Include="Source\Components">
       <UniqueIdentifier>{4a212f56-0209-4a00-aab9-caa5d84f5cee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Physics">
+      <UniqueIdentifier>{a6e8b88b-1ca6-4667-a869-846402de21e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\EFile.cpp">
@@ -104,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="Source\Components\TextComponent.cpp">
       <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\CircleCollisionComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Physics.cpp">
+      <Filter>Source\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +216,15 @@
       <Filter>Source\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Components\TextComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Physics\Physics.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\CollisionComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\CircleCollisionComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>

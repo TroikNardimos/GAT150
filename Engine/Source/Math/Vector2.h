@@ -34,14 +34,16 @@ struct Vector2
 	Vector2& operator *= (float s) { x *= s; y *= s; return *this; }
 	Vector2& operator /= (float s) { x /= s; y /= s; return *this; }
 
-	float LenghtSqr() const { return (x * x) + (y * y); }
-	float Lenght() const { return Math::Sqrt((x * x) + (y * y)); }
+	float LengthSqr() const { return (x * x) + (y * y); }
+	float Length() const { return Math::Sqrt((x * x) + (y * y)); }
+
+	float DistanceSqr(const Vector2& v) { return (v - *this).LengthSqr(); }
+	float Distance(const Vector2& v) { return (v - *this).Length(); }
 
 	float Angle() const { return Math::Atan2(y, x); }
-
 	Vector2 Rotate(float radians) const;
 
-	Vector2 Normalized() const { return *this / Lenght(); }
+	Vector2 Normalized() const { return *this / Length(); }
 };
 
 inline Vector2 Vector2::Rotate(float radians) const

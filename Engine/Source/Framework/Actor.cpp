@@ -7,6 +7,7 @@
 
 #include <iostream>
 
+FACTORY_REGISTER(Actor);
 
 void Actor::Initialize()
 {

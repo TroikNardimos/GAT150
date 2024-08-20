@@ -36,7 +36,7 @@ float Model::GetRadius()
 
 	for (const Vector2& point : m_points)
 	{
-		float r = point.Lenght();
+		float r = point.Length();
 		if (r > radius)
 		{
 			radius = r;

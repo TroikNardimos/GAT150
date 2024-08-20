@@ -6,8 +6,10 @@ class PlayerComponent : public Component
 public:
 	CLASS_DECLARATION(PlayerComponent);
 
-	virtual void Initialize() override;
-	virtual void Update(float dt) override;
+	void Initialize() override;
+	void Update(float dt) override;
+
+	void OnCollisionEnter(Actor* actor);
 
 public:
 	float speed{ 0 };
