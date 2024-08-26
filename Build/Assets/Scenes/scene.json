@@ -3,9 +3,9 @@
     {
       "name": "background",
       "transform": {
-        "position": [ 0, 0 ],
+        "position": [ 400, 300 ],
         "rotation": 0,
-        "scale": 1.6
+        "scale": 1.7
       },
       "components": [
         {
@@ -27,17 +27,15 @@
           "textureName": "Textures/player.png"
         },
         {
-          "type": "EnginePhysicsComponent",
-          "velocity": [ 0, 0 ],
-          "damping": 3.0
+          "type": "Box2DPhysicsComponent",
+          "damping": 1.0,
+          "angularDamping": 1.0,
+          "gravityScale": 0,
+          "size": [ 32, 32 ]
         },
         {
           "type": "PlayerComponent",
           "speed": 700
-        },
-        {
-          "type": "CircleCollisionComponent",
-          "radius": 24
         }
       ]
     },
@@ -54,8 +52,11 @@
           "textureName": "Textures/enemy.png"
         },
         {
-          "type": "CircleCollisionComponent",
-          "radius": 24
+          "type": "Box2DPhysicsComponent",
+          "damping": 1.0,
+          "angularDamping": 1.0,
+          "gravityScale": 0,
+          "size": [ 32, 32 ]
         }
       ]
     },
@@ -74,6 +75,38 @@
           "fontName": "fonts/arcadeclassic.ttf",
           "fontsize": 24,
           "colour": [ 0, 1, 0, 1 ]
+        }
+      ]
+    },
+    {
+      "name": "rocket",
+      "prototype": true,
+      "transform": {
+        "position": [ 400, 300 ],
+        "rotation": 0,
+        "scale": 0.1
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/rocket.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.0,
+          "angularDamping": 0.0,
+          "gravityScale": 0,
+          "isSensor": true,
+          "size": [ 32, 16 ]
+        },
+        {
+          "type": "RocketComponent",
+          "speed": 400
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "audio/rocket.wav",
+          "playOnStart": true
         }
       ]
     }

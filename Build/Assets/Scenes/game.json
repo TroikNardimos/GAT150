@@ -1,0 +1,104 @@
+{
+  "actors": [
+    {
+      "name": "background",
+      "transform": {
+        "position": [ 400, 300 ],
+        "rotation": 0,
+        "scale": 1.7
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/green_nebula.png"
+        }
+      ]
+    },
+    {
+      "name": "player",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/warrior.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 0.5,
+          "gravityScale": 1,
+          "constrainAngle": true,
+          "friction": 0.0,
+          "size": [ 32, 48 ]
+        },
+        {
+          "type": "CharacterComponent",
+          "speed": 700
+        }
+      ]
+    },
+    {
+      "name": "bat",
+      "transform": {
+        "position": [ 560, 400 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "textureName": "Textures/bat.png",
+          "fps": 10,
+          "loop": true,
+          "numColumns": 4,
+          "numRows": 1,
+          "startFrame": 1,
+          "endFrame": 4
+        }
+      ]
+    },
+    {
+      "name": "coin",
+      "transform": {
+        "position": [ 530, 450 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "textureName": "Textures/coin.png",
+          "fps": 12,
+          "loop": true,
+          "numColumns": 8,
+          "numRows": 1,
+          "startFrame": 1,
+          "endFrame": 8
+        }
+      ]
+    },
+    {
+      "name": "ghost",
+      "transform": {
+        "position": [ 500, 400 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "textureName": "Textures/ghost-idle.png",
+          "fps": 8,
+          "loop": true,
+          "numColumns": 7,
+          "numRows": 1,
+          "startFrame": 1,
+          "endFrame": 7
+        }
+      ]
+    }
+  ]
+}

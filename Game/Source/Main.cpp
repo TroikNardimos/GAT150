@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "Components/PlayerComponent.h"
+#include "SpaceGame.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -7,70 +7,32 @@
 
 //GitHub: https://github.com/TroikNardimos/GAT150
 
-void func1(int i) { std::cout << "func1: " << i << std::endl; }
-void func2(int i) { std::cout << "func2: " << i << std::endl; }
-
 int main(int argc, char* argv[])
 {
-	void(*fp)(int);
-	// modern: std::function<int(int)> fp;
-	fp = &func2;
-	fp(5);
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << std::endl;
 
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 	engine->Initialize();
 
-	File::SetFilePath("Assets");
-	std::cout << File::GetFilePath() << std::endl;
+	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>(engine.get());
+	game->Initialize();
+		
 
-	/*std::string buffer;
-	File::ReadFile("Scenes/scene.json", buffer);
-	std::cout << buffer << std::endl;*/
+	while (!engine->IsQuit()) {
+		engine->Update();
+		game->Update(engine->GetTime().GetDeltaTime());
 
-	rapidjson::Document document;
-	Json::Load("Scenes/scene.json", document);
+		//render
+		engine->GetRenderer().SetColour(255, 255, 255, 0);
+		engine->GetRenderer().BeginFrame();
 
-	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
-	scene->Read(document);
+		//Draw here
+		game->Draw(engine->GetRenderer());
 
-	scene->Initialize();
-
-	{
-		/*res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Skyrim_logo.png", engine->GetRenderer());
-		res_t<Font> font = ResourceManager::Instance().Get<Font>("Arcadeclassic.ttf", 50);
-		std::unique_ptr<Text> text = std::make_unique<Text>(font);
-		text->Create(engine->GetRenderer(), "Howdy", { 0,0,1,1 });
-
-		auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
-		actor->transform = Transform{ {30,30} };
-		auto component = Factory::Instance().Create<TextureComponent>(TextureComponent::GetTypeName());
-		component->texture = texture;
-		actor->AddComponent(std::move(component));*/
-
-		while (!engine->IsQuit()) {
-			engine->Update();
-			scene->Update(engine->GetTime().GetDeltaTime());
-
-			auto* actor = scene->GetActor<Actor>("text");
-			if (actor)
-			{
-				//actor->transform.scale = Math::Abs(Math::Sin(engine->GetTime().GetTime())) * 10;
-				actor->transform.rotation += 90 * engine->GetTime().GetDeltaTime();
-			}
-
-			//render
-			engine->GetRenderer().SetColour(255, 255, 255, 0);
-			engine->GetRenderer().BeginFrame();
-
-			//Draw here
-			
-
-			scene->Draw(engine->GetRenderer());
-
-			engine->GetRenderer().EndFrame();
-		}
+		engine->GetRenderer().EndFrame();
 	}
-	scene->RemoveAll();
+	game->Shutdown();
 	ResourceManager::Instance().Clear();
 	engine->Shutdown(); 
 

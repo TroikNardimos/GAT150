@@ -3,7 +3,8 @@
 
 class CircleCollisionComponent : public CollisionComponent
 {
-	CLASS_DECLARATION(CircleCollisionComponent);
+	CLASS_DECLARATION(CircleCollisionComponent)
+	CLASS_PROTOTYPE(CircleCollisionComponent)
 
 	void Initialize() override;
 	void Update(float dt) override;

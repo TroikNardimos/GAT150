@@ -28,6 +28,7 @@
 #include "Math/Random.h"
 #include "Math/MathUtils.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
 
 // **framework**
 #include "Framework/Actor.h"
@@ -37,6 +38,10 @@
 // **resources**
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
+
+// **event system**
+#include "Event/EventSystem.h"
+
 
 // **components**
 #include "Components/TextureComponent.h"
